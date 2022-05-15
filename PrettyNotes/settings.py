@@ -10,12 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "django-insecure-2+5)ii=bt2ay_a29pb=u)=rp1a@j3zincd9ez#^$0%vw*p9-fr"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pretty-notes-qt.herokuapp.com']
+ALLOWED_HOSTS = ['pretty-notes-qt.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -29,7 +29,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    "corsheaders",
+    'corsheaders',
+    'users',
+    'knox',
+
 ]
 
 MIDDLEWARE = [
@@ -132,7 +135,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10, 
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
 }
 
 CORS_ALLOW_ALL_ORIGINS = True

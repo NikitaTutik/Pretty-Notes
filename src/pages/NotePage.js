@@ -76,9 +76,12 @@ const NotePage = ({ match, history }) => {
                 ):(
                 <button onClick={handleSubmit}> Done </button>
                 )}
+                            <h2>Author: {note?.author}</h2>
                 
             </div>
-            <textarea onChange={(e) => {setNote({...note, 'body':e.target.value })}} defaultValue={note?.body}></textarea>
+            <textarea onChange={(e) => {setNote({...note, 'body':e.target.value })}} value={note?.body}>
+            </textarea>
+
         </div>
         
         

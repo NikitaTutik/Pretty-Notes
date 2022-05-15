@@ -3,6 +3,9 @@ from .models import Note
 
 
 class NoteSerializer(serializers.ModelSerializer):
+
+    author = serializers.StringRelatedField() # author name instead of id
+
     class Meta:
         model = Note
         fields = '__all__'
