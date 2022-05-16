@@ -29,14 +29,14 @@ const NotesListPage = (props) => {
     }
 
     const authLinks = (
-        <ul>
-          <span>
-            <strong>{user ? `${user.username}` : ''}</strong>
-          </span>
-            <button onClick={props.logout} >
-              Logout
-            </button>
-        </ul>
+        
+        <div className='auth' style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+        <strong>{user ? `${user.username}` : ''}</strong>
+        <div style={{ marginLeft: '.5rem', marginRight: '.5rem' }}></div>
+        <button className='buttonlogout' onClick={props.logout} >
+            Logout
+        </button>
+        </div> 
       );
   
       const guestLinks = (
