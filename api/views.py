@@ -4,12 +4,9 @@ from rest_framework import generics, permissions
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
+    queryset = Note.objects.all()
     #permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return Note.objects.filter(author=self.request.user)
-
-
+        
 
 class NoteCreate(generics.CreateAPIView):
     queryset = Note.objects.all()
