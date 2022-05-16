@@ -22,10 +22,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --force",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build --force"
   },
   "eslintConfig": {
     "extends": [
@@ -46,8 +46,8 @@
     ]
   },
   "engines": {
-    "node": "<=17.9.0",
-    "npm": "<=8.6.0"
+    "node": "17.9.0",
+    "npm": "8.6.0"
   },
   "devDependencies": {
     "redux-devtools-extension": "^2.13.9"
