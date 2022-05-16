@@ -5,17 +5,17 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
+    "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "prop-types": "^15.7.2",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-redux": "6.0.1",
-    "react-router-dom": "^5.3.1",
+    "react-dom": "^18.0.0",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
     "react-transition-group": "^2.9.0",
-    "redux": "4.2.0",
+    "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build --legacy-peer-deps"
   },
   "eslintConfig": {
     "extends": [
