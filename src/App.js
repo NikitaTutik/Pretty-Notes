@@ -8,7 +8,6 @@ import Login from './components/users/login'
 import Register from './components/users/register'
 import NotesListPage from './pages/NotesListPage'
 import NotePage from './pages/NotePage'
-import PrivateRoute from './components/common/privateroute'
 import { loadUser } from './actions/auth'
 import store from './store'
 import { useEffect } from "react";

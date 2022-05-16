@@ -51,6 +51,9 @@ export const login = (username, password) => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      const user = res.data
+      localStorage.setItem('user', JSON.stringify(user))
+      console.log('user', user) 
     })
     .catch((err) => {
       dispatch({
@@ -118,3 +121,4 @@ export const tokenConfig = (getState) => {
 
   return config;
 };
+

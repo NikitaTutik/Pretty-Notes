@@ -49,15 +49,17 @@ const NotesListPage = (props) => {
       );
 
   return (
+
       <div className='notes'>
         {isAuthenticated ? authLinks : guestLinks}
         <div className='notes-header'>
             <h2 className='notes-title'>&#9782; Notes </h2>
-            <p className='notes-title'>{notes.length} </p>
+            <p className='notes-title'>{notes.length}</p>
+           
         </div>
         <div className="notes-list">
             {notes.map((note, index) => (
-                <ListItem key={index} note={note} />
+                <ListItem key={index} note={note}  />
             ))}
         </div>
         <AddButton />
