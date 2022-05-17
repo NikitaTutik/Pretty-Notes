@@ -12,6 +12,8 @@ import { loadUser } from './actions/auth'
 import store from './store'
 import { useEffect } from "react";
 import { Provider } from 'react-redux'
+import PrivateRoute from './components/common/PrivateRoute'
+
 
 
 
@@ -26,7 +28,7 @@ function App() {
       <div className="container dark">
         <div className="app">
           <Header />
-          <Route exact path="/"  component={NotesListPage} />
+          <PrivateRoute exact path="/"  component={NotesListPage} />
           <Route path="/note/:id" component={NotePage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
