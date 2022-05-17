@@ -22,7 +22,7 @@ const NotesListPage = (props) => {
         getNotes()
     }, [])
     
-    let getNotes = async () => {
+    let getNotes = async (getState) => {
         let response = await fetch('/api/notes/')
         let data = await response.json()
         setNotes(data.results)

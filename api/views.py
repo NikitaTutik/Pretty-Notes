@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
-    #queryset = Note.objects.all()
-    #permission_classes = [permissions.IsAuthenticated]
+    queryset = Note.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         if not self.request.user.is_authenticated:
@@ -21,8 +21,9 @@ class NoteCreate(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         data=request.data
-        Note.objects.create(body=data[0], author=User.objects.get(username=data[1]))
+        Note.objects.create(body=data['body'], author=User.objects.get(pk=request.user.id))
         return self.create(request, *args, **kwargs)
+
 
 class NoteUpdate(generics.RetrieveUpdateAPIView):
     queryset = Note.objects.all()

@@ -1,7 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import { ReactComponent as ArrowLeft} from '../assets/arrow-left.svg'
-import { tokenConfig } from '../actions/auth'
+import axios from 'axios';
 
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].toString().replace(/^([\s]*)|([\s]*)$/g, ""); 
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+let csrftoken = getCookie('csrftoken');
 
 const NotePage = ({ match, history}) => {
 
@@ -25,7 +41,8 @@ const NotePage = ({ match, history}) => {
         fetch(`/api/notes/${noteId}/`, {
             method: "PUT",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
             },
             body:JSON.stringify(note)
         })
@@ -36,7 +53,8 @@ const NotePage = ({ match, history}) => {
         fetch(`/api/notes/${noteId}/delete`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
             },
             body:JSON.stringify(note)
         })
@@ -49,8 +67,9 @@ const NotePage = ({ match, history}) => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
             },
-            body:JSON.stringify([note.body, userdata.user.username]),
+            body:JSON.stringify(note),
 
         })
 

@@ -9,8 +9,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
 } from './types';
-
-
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {

@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
+from knox.auth import TokenAuthentication
 from django.contrib.auth import login
 from .serializers import LoginSerializer, UserSerializer, RegisterSerializer
 
@@ -39,6 +40,7 @@ class LoginAPI(generics.GenericAPIView):
 
  
 class UserAPI(generics.RetrieveAPIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated,]
     serializer_class = UserSerializer
 
