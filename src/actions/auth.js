@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
   USER_LOADED,
   USER_LOADING,
@@ -10,6 +9,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
 } from './types';
+
+
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -33,7 +34,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // LOGIN USER
-export const login = (username, password) => (dispatch) => {
+export const login = (username, password) => (dispatch, getState) => {
   // Headers
   const config = {
     headers: {
@@ -53,14 +54,15 @@ export const login = (username, password) => (dispatch) => {
       });
       const user = res.data
       localStorage.setItem('user', JSON.stringify(user))
-      console.log('user', user) 
     })
     .catch((err) => {
       dispatch({
         type: LOGIN_FAIL,
       });
     });
+
 };
+
 
 // REGISTER USER
 export const register = ({ username, password, email }) => (dispatch) => {

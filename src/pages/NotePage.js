@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { ReactComponent as ArrowLeft} from '../assets/arrow-left.svg'
+import { tokenConfig } from '../actions/auth'
 
 
 const NotePage = ({ match, history}) => {
@@ -44,12 +45,10 @@ const NotePage = ({ match, history}) => {
     }
 
     let createNote = async () => {
-        console.log(note.body)
-        console.log(userdata.user.username)
         fetch(`/api/notes/create/`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body:JSON.stringify([note.body, userdata.user.username]),
 

@@ -12,6 +12,7 @@ import { loadUser } from './actions/auth'
 import store from './store'
 import { useEffect } from "react";
 import { Provider } from 'react-redux'
+import PrivateRoute from '../src/components/common/privateroute'
 
 
 

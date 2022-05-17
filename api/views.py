@@ -1,12 +1,18 @@
 from .models import Note
 from .serializers import NoteSerializer
 from rest_framework import generics, permissions
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.models import User
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
-    queryset = Note.objects.all()
+    #queryset = Note.objects.all()
     #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied()
+        return Note.objects.filter(author=self.request.user)
         
 
 class NoteCreate(generics.CreateAPIView):
@@ -17,7 +23,6 @@ class NoteCreate(generics.CreateAPIView):
         data=request.data
         Note.objects.create(body=data[0], author=User.objects.get(username=data[1]))
         return self.create(request, *args, **kwargs)
-
 
 class NoteUpdate(generics.RetrieveUpdateAPIView):
     queryset = Note.objects.all()
