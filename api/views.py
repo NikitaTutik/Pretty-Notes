@@ -10,9 +10,10 @@ class NoteView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        print(self.request.user.id)
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
-        return Note.objects.filter(author=self.request.user.id)
+        return Note.objects.filter(author=self.request.user)
         
 
 class NoteCreate(generics.CreateAPIView):
@@ -21,8 +22,7 @@ class NoteCreate(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         data=request.data
-        Note.objects.create(body=data['body'], author=User.objects.get(pk=request.user.id))
-        return self.create(request, *args, **kwargs)
+        return Note.objects.create(body=data['body'], author=User.objects.get(pk=request.user.id))
 
 
 class NoteUpdate(generics.RetrieveUpdateAPIView):

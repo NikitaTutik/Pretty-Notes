@@ -28,7 +28,7 @@ function App() {
       <div className="container dark">
         <div className="app">
           <Header />
-          <PrivateRoute exact path="/"  component={NotesListPage} />
+          <Route exact path="/"  component={NotesListPage} />
           <Route path="/note/:id" component={NotePage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
