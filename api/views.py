@@ -12,7 +12,7 @@ class NoteView(generics.ListAPIView):
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
-        return Note.objects.filter(author=self.request.user)
+        return Note.objects.filter(author=self.request.user.id)
         
 
 class NoteCreate(generics.CreateAPIView):
