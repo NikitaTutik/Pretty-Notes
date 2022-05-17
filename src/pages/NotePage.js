@@ -86,6 +86,11 @@ const NotePage = ({ match, history}) => {
         history.push('/')
     }
 
+    let handleChange = (value) => {
+        setNote(note => ({ ...note, 'body': value }))
+        console.log('Handle Change:', note)
+    }
+
     return (
         <div className='note'>
             <div className='note-header'>
@@ -97,10 +102,10 @@ const NotePage = ({ match, history}) => {
                 ):(
                 <button onClick={handleSubmit}> Done </button>
                 )}
-                            <h2>Author: {note?.author}</h2>
+                            <h2>Author: {note?.author_name}</h2>
                 
             </div>
-            <textarea onChange={(e) => {setNote({...note, 'body':e.target.value })}} value={note?.body}>
+            <textarea onChange={(e) => { handleChange(e.target.value) }} value={note?.body}>
             </textarea>
 
         </div>
