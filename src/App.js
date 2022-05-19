@@ -25,6 +25,7 @@ function App() {
   return (
     <Provider store={store}> 
     <Router>
+    <div style={{ position: 'absolute', fontSize: 10, fontFamily: 'aga-arabesque', padding: 5, color: 'gray'}}>beta build 1.1</div>
       <div className="container dark">
         <div className="app">
           <Header />

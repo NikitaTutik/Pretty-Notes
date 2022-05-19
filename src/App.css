@@ -15,13 +15,13 @@
 }
 
 .dark {
-  --color-main: #f68657;
+  --color-main: #FFAC41;
   --color-text: #d6d1d1;
   --color-dark: #f5f6f7;
   --color-gray: #999;
-  --color-bg: #1f2124;
-  --color-lighter: #292a2c;
-  --color-white: #2e3235;
+  --color-bg: #362222;
+  --color-lighter: #2B2B2B;
+  --color-white: #423F3E;
   --color-border:#252629;
 }
 
