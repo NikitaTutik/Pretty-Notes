@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
-    queryset = Note.objects.all()
+    #queryset = Note.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):

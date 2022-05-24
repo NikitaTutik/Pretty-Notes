@@ -3,7 +3,7 @@ import { ReactComponent as ArrowLeft} from '../assets/arrow-left.svg'
 import axios from 'axios';
 
 
-function getCookie(name) {
+export function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
@@ -80,7 +80,7 @@ const NotePage = ({ match, history}) => {
             deleteNote()
         }else if(noteId !== 'new'){
             updateNote()
-        }else if(noteId == 'new' && note !== null){
+        }else if(noteId === 'new' && note !== null){
             createNote()
         }
         history.push('/')
