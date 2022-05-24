@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { ReactComponent as ArrowLeft} from '../assets/arrow-left.svg'
 import axios from 'axios';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 
-export function getCookie(name) {
+function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
@@ -62,7 +64,7 @@ const NotePage = ({ match, history}) => {
 
     }
 
-    let createNote = async () => {
+    let createNote = async (getState) => {
         fetch(`/api/notes/create/`, {
             method: "POST",
             headers: {
@@ -72,7 +74,6 @@ const NotePage = ({ match, history}) => {
             body:JSON.stringify(note),
 
         })
-
     }
 
     let handleSubmit = () => {
@@ -88,7 +89,6 @@ const NotePage = ({ match, history}) => {
 
     let handleChange = (value) => {
         setNote(note => ({ ...note, 'body': value }))
-        console.log('Handle Change:', note)
     }
 
     return (

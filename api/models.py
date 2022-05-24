@@ -10,11 +10,10 @@ class Tag(models.Model):
 
 class Note(models.Model):
     body = models.TextField(null=True, blank=True)
-    tag = models.SlugField(max_length=80)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    tags = models.ManyToManyField(Tag, related_name='tags')
+    tags = models.ManyToManyField(Tag, blank=True, related_name='tags')
 
     def __str__(self) -> str:
         return self.body[0:30]  

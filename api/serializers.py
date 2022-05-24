@@ -5,7 +5,7 @@ class TagSerializer(serializers.ModelSerializer):
     names = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field='tag'
+        slug_field='tags'
      )
 
     class Meta:
@@ -16,6 +16,7 @@ class NoteSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username')
     tags = serializers.SlugRelatedField(
         many=True,
+        required=False,
         queryset=Tag.objects.all(),
         slug_field='name'
     )
