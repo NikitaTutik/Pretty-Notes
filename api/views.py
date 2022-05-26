@@ -1,12 +1,14 @@
-from .models import Note
+from re import L
+from django.test import tag
+from .models import Note, Tag
 from .serializers import NoteSerializer
 from rest_framework import generics, permissions
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.models import User
+from django.http import HttpRequest
+from rest_framework.request import Request
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
-    #queryset = Note.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -18,6 +20,14 @@ class NoteView(generics.ListAPIView):
 class NoteCreate(generics.CreateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+
+    def create(self, request, *args, **kwargs):
+        tags = []
+        for tag in request.data['tags'].split():
+            Tag.objects.get_or_create(name=tag)
+            tags.append(tag)
+        request.data['tags'] = tags
+        return super().create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

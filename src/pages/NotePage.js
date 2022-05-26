@@ -25,6 +25,7 @@ const NotePage = ({ match, history}) => {
 
     let noteId  = match.params.id;
     let [note, setNote] = useState(null)
+    let [tag, setTag] = useState(null)
     let userdata = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
@@ -35,7 +36,8 @@ const NotePage = ({ match, history}) => {
         if (noteId === 'new') return  
         let response = await fetch(`/api/notes/${noteId}/`)
         let data = await response.json()
-        setNote(data)
+        setNote(data.body)
+        setTag(data.tags)
 
     }
 
@@ -71,9 +73,10 @@ const NotePage = ({ match, history}) => {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrftoken
             },
-            body:JSON.stringify(note),
 
+            body:JSON.stringify({body:note.body, tags:note.tag}),
         })
+        console.log({body:note.body, tags:note.tag})
     }
 
     let handleSubmit = () => {
@@ -89,10 +92,17 @@ const NotePage = ({ match, history}) => {
 
     let handleChange = (value) => {
         setNote(note => ({ ...note, 'body': value }))
+
     }
 
+    let handleTagChange = (value) => {
+        setNote(note => ({ ...note, 'tag': value }))
+    }
+    
+
+
     return (
-        <div className='note'>
+        <div className='note' >
             <div className='note-header'>
                 <h3>
                 <ArrowLeft onClick={handleSubmit}/>
@@ -100,13 +110,18 @@ const NotePage = ({ match, history}) => {
                 { noteId !== 'new' ? (
                 <button onClick={deleteNote}>Delete</button>
                 ):(
-                <button onClick={handleSubmit}> Done </button>
+                <button onClick={handleSubmit}>Done</button>
                 )}
-                            <h2>Author: {note?.author_name}</h2>
-                
+                <h2>Author: {note?.author_name}</h2> 
             </div>
-            <textarea onChange={(e) => { handleChange(e.target.value) }} value={note?.body}>
-            </textarea>
+                <textarea className='112' onChange={(e) => { handleChange(e.target.value) }} value={note?.body}>
+                </textarea>
+                
+            <div>
+                <span id='divtags'>Tags:</span>
+                <textarea id='tt' onChange={(e) => { handleTagChange(e.target.value) }} value={note?.tag}>
+                </textarea>
+            </div>
 
         </div>
         

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Note,Tag
 
 class TagSerializer(serializers.ModelSerializer):
-    names = serializers.SlugRelatedField(
+    name = serializers.SlugRelatedField(
         many=True,
         read_only=True,
         slug_field='tags'
@@ -10,6 +10,10 @@ class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tag
+
+    def __str__(self):
+        return 'Tag[id: {id}, text: {text}]'.format(
+            id=self.id, names=self.name)
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -20,6 +24,10 @@ class NoteSerializer(serializers.ModelSerializer):
         queryset=Tag.objects.all(),
         slug_field='name'
     )
+
+    def create(self, validated_data):
+        print(validated_data)
+        return super().create(validated_data)
 
     class Meta:
         model = Note
