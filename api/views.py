@@ -37,6 +37,15 @@ class NoteUpdate(generics.RetrieveUpdateAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
+    def update(self, request, *args, **kwargs):
+        tags = []
+        for tag in request.data['tags'].split():
+            Tag.objects.get_or_create(name=tag)
+            tags.append(tag)
+        request.data['tags'] = tags
+        return super().update(request, *args, **kwargs)
+
+
 
 class NoteDelete(generics.DestroyAPIView):
     queryset = Note.objects.all()
