@@ -25,7 +25,6 @@ const NotePage = ({ match, history}) => {
 
     let noteId  = match.params.id;
     let [note, setNote] = useState(null)
-    let [tags, setTag] = useState(null)
 
     useEffect(() => {
         getNote()
@@ -94,8 +93,6 @@ const NotePage = ({ match, history}) => {
     let handleTagChange = (value) => {
         setNote(note => ({ ...note, 'tags': value }))
     }
-    
-
 
     return (
         <div className='note' >
@@ -114,7 +111,7 @@ const NotePage = ({ match, history}) => {
                 </textarea>
             <div>
                 <span id='divtags'>Tags:</span>
-                <textarea id='tt' onChange={(e) => { handleTagChange(e.target.value) }} value={note?.tags}>
+                <textarea id='tt' onChange={(e) => { handleTagChange(e.target.value) }} value={note?.tags.join(" ")}>
                 </textarea>
             </div>
 
