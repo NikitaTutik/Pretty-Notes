@@ -2,19 +2,16 @@ from rest_framework import serializers
 from .models import Note,Tag
 
 class TagSerializer(serializers.ModelSerializer):
-    name = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='tags'
-     )
+    name = serializers.JSONField()
 
     class Meta:
         model = Tag
+        fields = '__all__'
 
     def __str__(self):
         return 'Tag[id: {id}, text: {text}]'.format(
             id=self.id, names=self.name)
-
+    
 
 class NoteSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username')

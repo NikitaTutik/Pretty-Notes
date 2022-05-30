@@ -1,15 +1,15 @@
-from re import L
-from django.test import tag
 from .models import Note, Tag
-from .serializers import NoteSerializer
+from .serializers import NoteSerializer, TagSerializer
 from rest_framework import generics, permissions
 from django.core.exceptions import PermissionDenied
-from django.http import HttpRequest
-from rest_framework.request import Request
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class NoteView(generics.ListAPIView):
     serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['tags__name']
 
     def get_queryset(self):
         if not self.request.user.is_authenticated:
@@ -46,7 +46,14 @@ class NoteUpdate(generics.RetrieveUpdateAPIView):
         return super().update(request, *args, **kwargs)
 
 
-
 class NoteDelete(generics.DestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+
+
+class TagsView(generics.ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name']
+

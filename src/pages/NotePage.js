@@ -111,7 +111,7 @@ const NotePage = ({ match, history}) => {
                 </textarea>
             <div>
                 <span id='divtags'>Tags:</span>
-                <textarea id='tt' onChange={(e) => { handleTagChange(e.target.value) }} value={note?.tags.join(" ")}>
+                <textarea id='tt' onChange={(e) => { handleTagChange(e.target.value) }} value={note?.tags}>
                 </textarea>
             </div>
 
