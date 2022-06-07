@@ -15,9 +15,6 @@ import { useEffect } from "react";
 import { Provider } from 'react-redux'
 import PrivateRoute from './components/common/PrivateRoute'
 
-
-
-
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -31,7 +28,7 @@ function App() {
         <div className="app">
           <Header />
           <PrivateRoute exact path="/"  component={NotesListPage} />
-          <PrivateRoute path="/note/:id" component={NotePage} />
+          <Route path="/note/:id" component={NotePage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </div>
