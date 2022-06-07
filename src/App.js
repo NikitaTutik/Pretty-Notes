@@ -31,7 +31,7 @@ function App() {
         <div className="app">
           <Header />
           <PrivateRoute exact path="/"  component={NotesListPage} />
-          <Route path="/note/:id" component={NotePage} />
+          <PrivateRoute path="/note/:id" component={NotePage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </div>
