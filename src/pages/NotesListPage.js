@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
+import Search from '../components/Search'
 
 
 const NotesListPage = (props) => {
@@ -49,13 +50,13 @@ const NotesListPage = (props) => {
       );
 
   return (
-
       <div className='notes'>
-        {isAuthenticated ? authLinks : guestLinks}
+        <Search />
+
         <div className='notes-header'>
             <h2 className='notes-title'>&#9782; Notes </h2>
             <p className='notes-title'>{notes.length}</p>
-           
+            {isAuthenticated ? authLinks : guestLinks}
         </div>
         <div className="notes-list">
             {notes.map((note, index) => (

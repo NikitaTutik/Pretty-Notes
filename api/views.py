@@ -56,4 +56,3 @@ class TagsView(generics.ListAPIView):
     serializer_class = TagSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['name']
-

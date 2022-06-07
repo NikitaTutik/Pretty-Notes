@@ -7,6 +7,5 @@ urlpatterns = [
     path('notes/<int:pk>/', NoteUpdate.as_view()),
     path('notes/<int:pk>/delete', NoteDelete.as_view()),
     path('notes/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('notes/tags/', TagsView.as_view()),
-    
+    path('notes/tags/', TagsView.as_view()), 
 ]

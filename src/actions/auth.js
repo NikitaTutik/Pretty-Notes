@@ -12,9 +12,8 @@ import {
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
-// CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
-  // User Loading
+
   dispatch({ type: USER_LOADING });
 
   axios
@@ -33,9 +32,9 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-// LOGIN USER
+
 export const login = (username, password) => (dispatch, getState) => {
-  // Headers
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -64,9 +63,9 @@ export const login = (username, password) => (dispatch, getState) => {
 };
 
 
-// REGISTER USER
+
 export const register = ({ username, password, email }) => (dispatch) => {
-  // Headers
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -91,7 +90,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
     });
 };
 
-// LOGOUT USER
+
 export const logout = () => (dispatch, getState) => {
   axios
     .post('/api/auth/logout', null, tokenConfig(getState))
@@ -104,19 +103,18 @@ export const logout = () => (dispatch, getState) => {
 
 };
 
-// Setup config with token - helper function
 export const tokenConfig = (getState) => {
-  // Get token from state
+
   const token = getState().auth.token;
 
-  // Headers
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  // If token, add to headers config
+
   if (token) {
     config.headers['Authorization'] = `Token ${token}`;
   }

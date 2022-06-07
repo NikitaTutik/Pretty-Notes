@@ -64,7 +64,7 @@ a {
 
 .app {
   width: 100%;
-  max-width: 480px;
+  max-width: 680px;
   height: 88vh;
   margin: 0 auto;
   background-color: var(--color-white);
@@ -132,7 +132,7 @@ a {
 .notes-list {
   padding: 0;
   margin: 16px 0;
-  height: 70vh;
+  height: 60vh;
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
 }
@@ -249,10 +249,15 @@ a {
   height: 10vh;
   resize: none;
   scrollbar-width: none; /* Firefox */
+  background: linear-gradient(to right, #6e6060 0%,#6b7bdb 5%,#55f055 15%); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
 }
 
 #divtags {
   padding-left: 10px;
+  color:rgb(181, 192, 20)
 }
 
 
@@ -271,3 +276,19 @@ a {
   border: none;
   padding: 16px 12px;
 } 
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  margin-left: 10px;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.1rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+}
+

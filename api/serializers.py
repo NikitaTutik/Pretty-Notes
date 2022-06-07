@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Note,Tag
 
+
 class TagSerializer(serializers.ModelSerializer):
     name = serializers.JSONField()
 

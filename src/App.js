@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/Header'
 import Login from './components/users/login'
 import Register from './components/users/register'
+import Search from './components/Search'
 import NotesListPage from './pages/NotesListPage'
 import NotePage from './pages/NotePage'
 import { loadUser } from './actions/auth'
@@ -25,11 +26,11 @@ function App() {
   return (
     <Provider store={store}> 
     <Router>
-    <div style={{ position: 'absolute', fontSize: 10, fontFamily: 'aga-arabesque', padding: 5, color: 'gray'}}>beta build 1.1</div>
+    <div style={{ position: 'absolute', fontSize: 13, fontFamily: 'aga-arabesque', padding: 5, color: 'gray'}}>beta 1.1</div>
       <div className="container dark">
         <div className="app">
           <Header />
-          <Route exact path="/"  component={NotesListPage} />
+          <PrivateRoute exact path="/"  component={NotesListPage} />
           <Route path="/note/:id" component={NotePage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
