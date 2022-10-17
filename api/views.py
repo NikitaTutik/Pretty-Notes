@@ -22,11 +22,14 @@ class NoteCreate(generics.CreateAPIView):
     serializer_class = NoteSerializer
 
     def create(self, request, *args, **kwargs):
-        tags = []
-        for tag in request.data['tags'].split():
-            Tag.objects.get_or_create(name=tag)
-            tags.append(tag)
-        request.data['tags'] = tags
+        if len(request.data['tags']) != 0:
+            print('hello')
+            tags = []
+            for tag in request.data['tags'].split():
+                Tag.objects.get_or_create(name=tag)
+                tags.append(tag)
+            request.data['tags'] = tags
+
         return super().create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
